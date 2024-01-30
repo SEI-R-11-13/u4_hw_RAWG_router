@@ -108,6 +108,7 @@ button {
 .card .info-wrapper {
   padding: 1em;
 }
+
 .container-grid {
   padding: 2em 0;
   display: grid;
@@ -148,7 +149,51 @@ button {
 
 .flex-row {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
+
+.flex-row p {
+  margin-left: auto;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+:is(.flex-col) p, h3 {
+  margin: 0.2em;
+}  
+
 .space {
   justify-content: space-between;
+  margin: 1em 0;
+}
+
+.page-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20%;
+}
+
+:is(.page-title-container) h1, h3, p {
+  text-align: center;
+}
+
+.description p {
+  text-align: justify;
+  line-height: 1.5em;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
