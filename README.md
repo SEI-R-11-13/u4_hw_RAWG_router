@@ -57,7 +57,9 @@ Let's take a look at the structure of the app we've just cloned. How are compone
   <img alt="tree" src="public/assets/images/Component Hierarchy Diagram.png" />
 </p>
 
-With Vite instead of Create React App, `index.js` is `Main.jsx` Let's start with `Main.jsx`, followed by `App.jsx`. In `Main.jsx`, we'll need one additional import:
+Note: With Vite instead of Create React App, `index.js` is `Main.jsx`.
+
+Let's start with `Main.jsx`, followed by `App.jsx`. In `Main.jsx`, we'll need one additional import:
 
 ```js
 import { BrowserRouter } from 'react-router-dom'
