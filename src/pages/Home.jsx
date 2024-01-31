@@ -59,7 +59,8 @@ getGenres();
               key={genre.id}
               onClick={() => {}}
               name={genre.name}
-              imageBackground={genre.background_image}
+              image={genre.image_background}
+              gamesCount={genre.games_count}
             />
           ))}
         </section>

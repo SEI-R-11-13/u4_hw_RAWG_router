@@ -6,7 +6,7 @@
 const GenreCard = (props) => {
 
   return (
-    <div className="card" onClick={props.Onclick}>
+    <div className="card" onClick={props.onClick}>
       <div className="img-wrapper">
     <img src={props.image} />
       </div>

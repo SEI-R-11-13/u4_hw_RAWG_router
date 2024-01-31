@@ -11,7 +11,7 @@ const GameCard = (props) => {
       </div>
       <div className="info-wrapper flex-col">
         <h3>{props.name}</h3>
-        <p>{props.rating}</p>
+        <p>Rating: {props.rating}</p>
       </div>
     </div>
   )
