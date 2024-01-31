@@ -25,7 +25,6 @@ const Home = () => {
     getGenres()
   },[])
   
-
     const getSearchResults = async (e) => {
       e.preventDefault()
       const response = await axios.get(`${SEARCH_PATH}?key=${API_KEY}&search=${searchQuery}`)
@@ -33,7 +32,6 @@ const Home = () => {
       toggleSearched(!searched)
     }
     getSearchResults()
-
 
   return (
     <div>
