@@ -7,7 +7,7 @@ const GenreCard = ({ image, name, gamesCount, onClick }) => {
       </div>
       <div className="info-wrapper flex-col">
         <h3>{name}</h3>
-        <p>{gamesCount}</p>
+        <p>{gamesCount} games</p>
       </div>
     </div>
   )

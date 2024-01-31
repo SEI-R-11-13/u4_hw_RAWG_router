@@ -6,7 +6,7 @@ const GameCard = ({ onClick, image, name, rating }) => {
       </div>
       <div className="info-wrapper flex-col">
         <h3>{name}</h3>
-        <p>{rating}</p>
+        <p>Rating: {rating}</p>
       </div>
     </div>
   )
