@@ -1,12 +1,12 @@
-const GameCard = () => {
-  
+const GameCard = ({ onClick, image, name, rating }) => {
   return (
-    <div className="card game-card">
+    <div className="card game-card" onClick={onClick}>
       <div className="img-wrapper">
-
+        <img src={image} alt={name} />
       </div>
       <div className="info-wrapper flex-col">
-        
+        <h3>{name}</h3>
+        <p>Rating: {rating}</p>
       </div>
     </div>
   )
