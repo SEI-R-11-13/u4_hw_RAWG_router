@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const getGenres = async () => {
       try{
-        const response = await axios.get(`https://api.rawg.io/api/genre?api_key=${import.meta.env.VITE_TMDB_KEY}`)
+        const response = await axios.get(`https://api.rawg.io/api/genre?key=${apiKey}`)
         setGenres(response.data.results)
       } catch (error) {
         console.error('error fetching genres:', error)
@@ -30,7 +30,7 @@ const Home = () => {
   const getSearchResults = async (e) => {
     e.preventDefault()
     try{
-      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&api_key=${import.meta.env.VITE_TMDB_KEY}`)
+      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${apiKey}`)
       setSearchResults(response.data.results)
       toggleSearched(true)
       setSearchQuery('')
@@ -46,16 +46,26 @@ const Home = () => {
   return (
     <div>
       <div className="search">
-        <Search />
+        <Search onSubmit={getSearchResults} onChange={handleChange} value={searchQuery}/>
         <h2>Search Results</h2>
         <section className="search-results container-grid">
+          {/* Render search results using the map function */}
+          {searchResults.map((result) => (
+            <GameCard key={result.id} image={result.image} name={result.name} />
+          ))}
 
         </section>
       </div>
       <div className="genres">
         <h2>Genres</h2>
         <section className="container-grid">
+        {
+          genres.map((genre)=> (
+            <GenreCard key={genre.id} genres={genres}/>
+          )
+          )
 
+        }
         </section>
       </div>
     </div>
