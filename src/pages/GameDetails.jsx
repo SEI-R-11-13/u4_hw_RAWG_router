@@ -1,31 +1,33 @@
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const GameDetails = (props) => {
-  const [gameDetails, setGameDetails] = useState({})
+const GameDetails = ({ match }) => {
+  const [gameDetails, setGameDetails] = useState(null);
+  const gameId = match.params.gameId;
 
   useEffect(() => {
-    
-  }, [gameId])
+    const fetchGameDetails = async () => {
+      try {
+        const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${a31b75fed68b4b7d9f7fe5811bac1406}`);
+        setGameDetails(response.data);
+      } catch (error) {
+        console.error('Error fetching game details:', error);
+      }
+    };
+
+    fetchGameDetails();
+  }, [gameId]);
+
+  if (!gameDetails) {
+    return <div>Loading...</div>;
+  }
+
 
   return (
-    <div className="game-content">
-      <section className="image-container">
-        <div>
-
-        </div>
-      </section>
-      <section className="details">
-        <div className="flex-row space">
-
-        </div>
-        <div>
-          <h3>
-
-          </h3>
-        </div>
-      </section>
+    <div>
+      <h2>{gameDetails.name}</h2>
     </div>
-  )
-}
+  );
+};
 
-export default GameDetails
+export default GameDetails;

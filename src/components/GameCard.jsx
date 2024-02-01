@@ -1,15 +1,14 @@
-const GameCard = () => {
-  
-  return (
-    <div className="card game-card">
-      <div className="img-wrapper">
+import React from 'react';
 
-      </div>
-      <div className="info-wrapper flex-col">
-        
-      </div>
+
+const GameCard = ({ onClick, name, rating, background_image }) => {
+  return (
+    <div className="card" onClick={onClick}>
+      <img src={background_image} alt={name} />
+      <h3>{name}</h3>
+      <p>Rating: {rating}</p>
     </div>
-  )
-}
+  );
+};
 
 export default GameCard
