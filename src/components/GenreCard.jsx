@@ -1,13 +1,13 @@
-const GenreCard = () => {
+const GenreCard = ({genre}) => {
 
   return (
-    <div className="card" onClick={props.onClick}>
+    <div className="card" onClick={genre.onClick}>
       <div className="img-wrapper">
-        <img src={props.img} alt={props.name} />
+        <img src={genre.image_background} alt={genre.name} />
       </div>
       <div className="info-wrapper flex-col">
-        <h3>{props.name}</h3>
-        <p>{props.gameCount}</p>
+        <h3>{genre.name}</h3>
+        <p>{genre.gameCount}</p>
       </div>
     </div>
   )

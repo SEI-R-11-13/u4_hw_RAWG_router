@@ -3,6 +3,7 @@ import Search from '../components/Search'
 import axios from 'axios'
 import GameCard from '../components/GameCard'
 import GenreCard from '../components/GenreCard'
+import { Link } from 'react-router-dom'
 
 
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const getGenres = async () => {
       try{
-        const response = await axios.get(`https://api.rawg.io/api/genre?key=${apiKey}`)
+        const response = await axios.get(`https://api.rawg.io/api/genres?key=${import.meta.env.VITE_RAWG_KEY}`)
         setGenres(response.data.results)
       } catch (error) {
         console.error('error fetching genres:', error)
@@ -30,12 +31,12 @@ const Home = () => {
   const getSearchResults = async (e) => {
     e.preventDefault()
     try{
-      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${apiKey}`)
+      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${import.meta.env.VITE_RAWG_KEY}`)
       setSearchResults(response.data.results)
       toggleSearched(true)
       setSearchQuery('')
 ``  } catch(error){
-      console.error('errir fetching search results', error)
+      console.error('error fetching search results', error)
     }
   }
 
@@ -46,12 +47,14 @@ const Home = () => {
   return (
     <div>
       <div className="search">
-        <Search onSubmit={getSearchResults} onChange={handleChange} value={searchQuery}/>
+        <Search onSubmit={(e)=> getSearchResults(e)} onChange={handleChange} value={searchQuery}/>
         <h2>Search Results</h2>
         <section className="search-results container-grid">
-          {/* Render search results using the map function */}
+
           {searchResults.map((result) => (
-            <GameCard key={result.id} image={result.image} name={result.name} />
+            <Link to={`games/details/${result.id}`}>
+              <GameCard key={result.id} image={result.background_image} name={result.name} />
+            </Link>
           ))}
 
         </section>
@@ -61,7 +64,9 @@ const Home = () => {
         <section className="container-grid">
         {
           genres.map((genre)=> (
-            <GenreCard key={genre.id} genres={genres}/>
+            <Link to={`views/games/${genre.id}`}>
+              <GenreCard key={genre.id} genre={genre}/>
+            </Link>
           )
           )
 
