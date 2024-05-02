@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GameCard from '../components/GameCard'
-
+import GameCard from '../components/GameCard';
 
 const Home = () => {
   const [genres, setGenres] = useState([]);
@@ -15,7 +14,7 @@ const Home = () => {
 
   const getGenres = async () => {
     try {
-      const response = await axios.get(`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_KEY}`);
+      const response = await axios.get(`https://api.rawg.io/api/genres?key=${import.meta.env.VITE_RAWG_KEY}`);
       if (!response.data) {
         throw new Error('Failed to fetch genres');
       }
@@ -25,26 +24,14 @@ const Home = () => {
     }
   };
 
-  const getSearchResults = async () => {
-    try {
-      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${import.meta.env.VITE_RAWG_KEY}`);
-      if (!response.data) {
-        throw new Error('Failed to fetch search results');
-      }
-      setSearchResults(response.data.results);
-      setSearched(true);
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-  };
-
   const getGamesByGenre = async (genreId) => {
     try {
       const response = await axios.get(`https://api.rawg.io/api/games?page_size=40&genres=${genreId}&key=${import.meta.env.VITE_RAWG_KEY}`);
       if (!response.data) {
         throw new Error('Failed to fetch games by genre');
       }
-      
+      setSearchResults(response.data.results);
+      setSearched(true);
     } catch (error) {
       console.error('Error fetching games by genre:', error);
     }
@@ -56,7 +43,7 @@ const Home = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getSearchResults();
+    getGamesByGenre(searchQuery);
   };
 
   return (
@@ -67,7 +54,7 @@ const Home = () => {
           <input
             type="text"
             value={searchQuery}
-            placeholder="Search Games"
+            placeholder="Search Games by Genre"
             onChange={handleChange}
           />
           <button type="submit">Search</button>
