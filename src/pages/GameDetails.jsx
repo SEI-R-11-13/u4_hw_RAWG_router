@@ -19,18 +19,24 @@ const GameDetails = () => {
   }, [gameId]);
 
   return (
-    <div>
-      {gameDetails ? (
+    <div className="game-content">
+      <section className="image-container">
         <div>
-          <h2>{gameDetails.name}</h2>
-          <p>Description: {gameDetails.description}</p>
-          
-        </div>
-      ) : (
-        <p>Loading game details...</p>
-      )}
-    </div>
-  );
-};
 
-export default GameDetails;
+        </div>
+      </section>
+      <section className="details">
+        <div className="flex-row space">
+
+        </div>
+        <div>
+          <h3>
+
+          </h3>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default GameDetails
