@@ -41,9 +41,18 @@ const Home = () => {
     setSearchQuery(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    getGamesByGenre(searchQuery);
+    try {
+      const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${import.meta.env.VITE_RAWG_KEY}`);
+      if (!response.data) {
+        throw new Error('Failed to fetch search results');
+      }
+      setSearchResults(response.data.results);
+      setSearched(true);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
   };
 
   return (
@@ -54,7 +63,7 @@ const Home = () => {
           <input
             type="text"
             value={searchQuery}
-            placeholder="Search Games by Genre"
+            placeholder="Search Games"
             onChange={handleChange}
           />
           <button type="submit">Search</button>
