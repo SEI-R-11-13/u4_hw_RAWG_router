@@ -10,6 +10,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-left {
+  display: flex;
+}
+
+.navbar-title {
+  margin: 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.nav-link:last-child {
+  margin-right: 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,7 +61,7 @@ header {
 }
 
 header nav a {
-  margin: 0 1em;
+  margin: 0 5em;
 }
 
 input {
@@ -152,3 +184,19 @@ button {
 .space {
   justify-content: space-between;
 }
+
+.about {
+  text-align: center;
+  padding: 20px;
+}
+
+.about-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.about-content {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
